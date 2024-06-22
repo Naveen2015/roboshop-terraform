@@ -6,7 +6,7 @@ resource "aws_instance" "testserver" {
   }
 }
 
-output "privateIp"
-{
+
+output "Ipaddress" {
   value = aws_instance.testserver.private_ip
 }
