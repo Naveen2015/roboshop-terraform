@@ -77,70 +77,70 @@ resource "aws_instance" "payment" {
 }
 
 resource "aws_route53_record" "frontend" {
-  zone_id = Z01562533IX3SEB52WHM7
+  zone_id = "Z01562533IX3SEB52WHM7"
   name    = "frontend-dev.kruthikadevops.online"
   type    = "A"
   ttl     = 30
   records = [aws_instance.frontend.private_ip]
 }
 resource "aws_route53_record" "mongod" {
-  zone_id = Z01562533IX3SEB52WHM7
+  zone_id = "Z01562533IX3SEB52WHM7"
   name    = "mongod-dev.kruthikadevops.online"
   type    = "A"
   ttl     = 30
   records = [aws_instance.mongod.private_ip]
 }
 resource "aws_route53_record" "catalogue" {
-  zone_id = Z01562533IX3SEB52WHM7
+  zone_id = "Z01562533IX3SEB52WHM7"
   name    = "catalogue-dev.kruthikadevops.online"
   type    = "A"
   ttl     = 30
   records = [aws_instance.catalogue.private_ip]
 }
 resource "aws_route53_record" "cart" {
-  zone_id = Z01562533IX3SEB52WHM7
+  zone_id = "Z01562533IX3SEB52WHM7"
   name    = "cart-dev.kruthikadevops.online"
   type    = "A"
   ttl     = 30
   records = [aws_instance.cart.private_ip]
 }
 resource "aws_route53_record" "redis" {
-  zone_id = Z01562533IX3SEB52WHM7
+  zone_id = "Z01562533IX3SEB52WHM7"
   name    = "redis-dev.kruthikadevops.online"
   type    = "A"
   ttl     = 30
   records = [aws_instance.redis.private_ip]
 }
 resource "aws_route53_record" "user" {
-  zone_id = Z01562533IX3SEB52WHM7
+  zone_id = "Z01562533IX3SEB52WHM7"
   name    = "user-dev.kruthikadevops.online"
   type    = "A"
   ttl     = 30
   records = [aws_instance.user.private_ip]
 }
 resource "aws_route53_record" "mysql" {
-  zone_id = Z01562533IX3SEB52WHM7
+  zone_id = "Z01562533IX3SEB52WHM7"
   name    = "mysql-dev.kruthikadevops.online"
   type    = "A"
   ttl     = 30
   records = [aws_instance.mysql.private_ip]
 }
 resource "aws_route53_record" "shipping" {
-  zone_id = Z01562533IX3SEB52WHM7
+  zone_id = "Z01562533IX3SEB52WHM7"
   name    = "shipping-dev.kruthikadevops.online"
   type    = "A"
   ttl     = 30
   records = [aws_instance.shipping.private_ip]
 }
 resource "aws_route53_record" "rabbitmq" {
-  zone_id = Z01562533IX3SEB52WHM7
+  zone_id = "Z01562533IX3SEB52WHM7"
   name    = "rabbitmq-dev.kruthikadevops.online"
   type    = "A"
   ttl     = 30
   records = [aws_instance.rabbitmq.private_ip]
 }
 resource "aws_route53_record" "payment" {
-  zone_id = Z01562533IX3SEB52WHM7
+  zone_id = "Z01562533IX3SEB52WHM7"
   name    = "payment-dev.kruthikadevops.online"
   type    = "A"
   ttl     = 30
