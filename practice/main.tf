@@ -5,7 +5,7 @@ resource "aws_instance" "testserver" {
       max_price = 0.0031
     }
   }
-  instance_type = "t2.micro"
+  instance_type = "t4g.nano"
   tags = {
     Name= "naveen"
   }
