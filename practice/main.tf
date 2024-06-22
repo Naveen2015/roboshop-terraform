@@ -5,3 +5,8 @@ resource "aws_instance" "testserver" {
     Name= "naveen"
   }
 }
+
+output "privateIp"
+{
+  value = aws_instance.testserver.private_ip
+}
