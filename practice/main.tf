@@ -1,12 +1,11 @@
-resource "aws_instance" "testserver" {
-  ami = "ami-0b4f379183e5706b9"
-  instance_type = "t3.micro"
-  tags = {
-    Name= "naveen"
-  }
+variable "sample" {
+  default = "naveen reddy"
 }
 
+output "result" {
+  value = var.sample
+}
 
-output "Ipaddress" {
-  value = aws_instance.testserver.private_ip
+output "result1" {
+  value = "the value of the variable is ${var.sample}"
 }
