@@ -20,9 +20,9 @@ variable "fruits" {
 }
 
 
-resource "null_resource" "dict_fruits" {
+resource "null_resource" "fruits" {
   for_each = var.fruits
   provisioner "local-exec" {
-    command = "echo fruit name: ${each.key}"
+    command = "echo Fruit name: ${each.key}"
   }
 }
