@@ -1,5 +1,4 @@
-variable "sample"
-{
+variable "sample" {
   default = "naveen reddy"
 }
 
