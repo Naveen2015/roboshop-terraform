@@ -1,4 +1,4 @@
-variable "list" {
+/*variable "list" {
   default = ["apple","guava"]
 }
 
@@ -9,7 +9,7 @@ resource "null_resource" "fruits" {
    command= "echo fruit name---${var.list[count.index]}"
   }
 }
-
+*/
 
 variable "fruits" {
   default = {
