@@ -28,3 +28,5 @@ variable "dict" {
 output "dict_values" {
   value = "${var.dict["firstname"]}+>>>>>>>+${var.dict["lastname"]}"
 }
+
+variable "env" {}
