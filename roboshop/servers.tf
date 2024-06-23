@@ -14,155 +14,70 @@ variable "instance_type" {
   default = "t3.micro"
 }
 
-
-resource "aws_instance" "frontend" {
-  ami           = data.aws_ami.ami.image_id
-  instance_type = var.instance_type
-  vpc_security_group_ids = [data.aws_security_group.allow-all.id]
-  tags = {
-    Name= "frontend"
-  }
-}
-resource "aws_instance" "mongod" {
-  ami           = data.aws_ami.ami.image_id
-  instance_type = var.instance_type
-  vpc_security_group_ids = [data.aws_security_group.allow-all.id]
-  tags = {
-    Name= "mongod"
-  }
-}
-resource "aws_instance" "catalogue" {
-  ami           = data.aws_ami.ami.image_id
-  instance_type = var.instance_type
-  vpc_security_group_ids = [data.aws_security_group.allow-all.id]
-  tags = {
-    Name= "catalogue"
-  }
-}
-resource "aws_instance" "redis" {
-  ami           = data.aws_ami.ami.image_id
-  instance_type = var.instance_type
-  vpc_security_group_ids = [data.aws_security_group.allow-all.id]
-  tags = {
-    Name= "redis"
-  }
-}
-resource "aws_instance" "user" {
-  ami           = data.aws_ami.ami.image_id
-  instance_type = var.instance_type
-  vpc_security_group_ids = [data.aws_security_group.allow-all.id]
-  tags = {
-    Name= "user"
-  }
-}
-resource "aws_instance" "cart" {
-  ami           = data.aws_ami.ami.image_id
-  instance_type = var.instance_type
-  vpc_security_group_ids = [data.aws_security_group.allow-all.id]
-  tags = {
-    Name= "cart"
-  }
-}
-resource "aws_instance" "mysql" {
-  ami           = data.aws_ami.ami.image_id
-  instance_type = var.instance_type
-  vpc_security_group_ids = [data.aws_security_group.allow-all.id]
-  tags = {
-    Name= "mysql"
-  }
-}
-resource "aws_instance" "shipping" {
-  ami           = data.aws_ami.ami.image_id
-  instance_type = var.instance_type
-  vpc_security_group_ids = [data.aws_security_group.allow-all.id]
-  tags = {
-    Name= "shipping"
-  }
-}
-resource "aws_instance" "rabbitmq" {
-  ami           = data.aws_ami.ami.image_id
-  instance_type = var.instance_type
-  vpc_security_group_ids = [data.aws_security_group.allow-all.id]
-  tags = {
-    Name= "rabbitmq"
-  }
-}
-resource "aws_instance" "payment" {
-  ami           = data.aws_ami.ami.image_id
-  instance_type = var.instance_type
-  vpc_security_group_ids = [data.aws_security_group.allow-all.id]
-  tags = {
-    Name= "payment"
+variable "components" {
+  default = {
+    frontend={
+      name="frontend"
+      instance_type="t3.micro"
+    }
+    mongod={
+      name="mongod"
+      instance_type="t3.micro"
+    }
+    catalogue={
+      name="catalogue"
+      instance_type="t3.micro"
+    }
+    redis={
+      name="redis"
+      instance_type="t3.micro"
+    }
+    user={
+      name="user"
+      instance_type="t3.micro"
+    }
+    cart={
+      name="cart"
+      instance_type="t3.micro"
+    }
+    mysql={
+      name="mysql"
+      instance_type="t3.micro"
+    }
+    shipping={
+      name="shipping"
+      instance_type="t3.micro"
+    }
+    rabbitmq={
+      name="rabbitmq"
+      instance_type="t3.micro"
+    }
+    payment={
+      name="payment"
+      instance_type="t3.micro"
+    }
   }
 }
 
-resource "aws_route53_record" "frontend" {
+
+
+
+
+/*resource "aws_instance" "instance" {
+  for_each = var.components
+  ami           = data.aws_ami.ami.image_id
+  instance_type = "${each.value["instance_type"]}"
+  vpc_security_group_ids = [data.aws_security_group.allow-all.id]
+  tags = {
+    Name= "${each.value["name"]}"
+  }
+}
+
+resource "aws_route53_record" "${each.value["name"]" {
+for_each = var.components
   zone_id = "Z01562533IX3SEB52WHM7"
-  name    = "frontend-dev.kruthikadevops.online"
+  name    = "${each.value["name"]-dev.kruthikadevops.online"
   type    = "A"
   ttl     = 30
-  records = [aws_instance.frontend.private_ip]
-}
-resource "aws_route53_record" "mongod" {
-  zone_id = "Z01562533IX3SEB52WHM7"
-  name    = "mongod-dev.kruthikadevops.online"
-  type    = "A"
-  ttl     = 30
-  records = [aws_instance.mongod.private_ip]
-}
-resource "aws_route53_record" "catalogue" {
-  zone_id = "Z01562533IX3SEB52WHM7"
-  name    = "catalogue-dev.kruthikadevops.online"
-  type    = "A"
-  ttl     = 30
-  records = [aws_instance.catalogue.private_ip]
-}
-resource "aws_route53_record" "cart" {
-  zone_id = "Z01562533IX3SEB52WHM7"
-  name    = "cart-dev.kruthikadevops.online"
-  type    = "A"
-  ttl     = 30
-  records = [aws_instance.cart.private_ip]
-}
-resource "aws_route53_record" "redis" {
-  zone_id = "Z01562533IX3SEB52WHM7"
-  name    = "redis-dev.kruthikadevops.online"
-  type    = "A"
-  ttl     = 30
-  records = [aws_instance.redis.private_ip]
-}
-resource "aws_route53_record" "user" {
-  zone_id = "Z01562533IX3SEB52WHM7"
-  name    = "user-dev.kruthikadevops.online"
-  type    = "A"
-  ttl     = 30
-  records = [aws_instance.user.private_ip]
-}
-resource "aws_route53_record" "mysql" {
-  zone_id = "Z01562533IX3SEB52WHM7"
-  name    = "mysql-dev.kruthikadevops.online"
-  type    = "A"
-  ttl     = 30
-  records = [aws_instance.mysql.private_ip]
-}
-resource "aws_route53_record" "shipping" {
-  zone_id = "Z01562533IX3SEB52WHM7"
-  name    = "shipping-dev.kruthikadevops.online"
-  type    = "A"
-  ttl     = 30
-  records = [aws_instance.shipping.private_ip]
-}
-resource "aws_route53_record" "rabbitmq" {
-  zone_id = "Z01562533IX3SEB52WHM7"
-  name    = "rabbitmq-dev.kruthikadevops.online"
-  type    = "A"
-  ttl     = 30
-  records = [aws_instance.rabbitmq.private_ip]
-}
-resource "aws_route53_record" "payment" {
-  zone_id = "Z01562533IX3SEB52WHM7"
-  name    = "payment-dev.kruthikadevops.online"
-  type    = "A"
-  ttl     = 30
-  records = [aws_instance.payment.private_ip]
-}
+  records = [aws_instance.${each.value["name"].private_ip]
+}*/
