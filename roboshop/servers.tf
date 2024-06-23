@@ -4,6 +4,12 @@ data "aws_ami" "ami" {
   name_regex = "Centos-8-DevOps-Practice"
 }
 
+data "aws_security_group" "allow-all" {
+  name = "allow-all"
+}
+
+
+
 variable "instance_type" {
   default = "t3.micro"
 }
@@ -12,6 +18,7 @@ variable "instance_type" {
 resource "aws_instance" "frontend" {
   ami           = data.aws_ami.ami.image_id
   instance_type = var.instance_type
+  vpc_security_group_ids = [data.aws_security_group.allow-all.id]
   tags = {
     Name= "frontend"
   }
@@ -19,6 +26,7 @@ resource "aws_instance" "frontend" {
 resource "aws_instance" "mongod" {
   ami           = data.aws_ami.ami.image_id
   instance_type = var.instance_type
+  vpc_security_group_ids = [data.aws_security_group.allow-all.id]
   tags = {
     Name= "mongod"
   }
@@ -26,6 +34,7 @@ resource "aws_instance" "mongod" {
 resource "aws_instance" "catalogue" {
   ami           = data.aws_ami.ami.image_id
   instance_type = var.instance_type
+  vpc_security_group_ids = [data.aws_security_group.allow-all.id]
   tags = {
     Name= "catalogue"
   }
@@ -33,6 +42,7 @@ resource "aws_instance" "catalogue" {
 resource "aws_instance" "redis" {
   ami           = data.aws_ami.ami.image_id
   instance_type = var.instance_type
+  vpc_security_group_ids = [data.aws_security_group.allow-all.id]
   tags = {
     Name= "redis"
   }
@@ -40,6 +50,7 @@ resource "aws_instance" "redis" {
 resource "aws_instance" "user" {
   ami           = data.aws_ami.ami.image_id
   instance_type = var.instance_type
+  vpc_security_group_ids = [data.aws_security_group.allow-all.id]
   tags = {
     Name= "user"
   }
@@ -47,6 +58,7 @@ resource "aws_instance" "user" {
 resource "aws_instance" "cart" {
   ami           = data.aws_ami.ami.image_id
   instance_type = var.instance_type
+  vpc_security_group_ids = [data.aws_security_group.allow-all.id]
   tags = {
     Name= "cart"
   }
@@ -54,6 +66,7 @@ resource "aws_instance" "cart" {
 resource "aws_instance" "mysql" {
   ami           = data.aws_ami.ami.image_id
   instance_type = var.instance_type
+  vpc_security_group_ids = [data.aws_security_group.allow-all.id]
   tags = {
     Name= "mysql"
   }
@@ -61,6 +74,7 @@ resource "aws_instance" "mysql" {
 resource "aws_instance" "shipping" {
   ami           = data.aws_ami.ami.image_id
   instance_type = var.instance_type
+  vpc_security_group_ids = [data.aws_security_group.allow-all.id]
   tags = {
     Name= "shipping"
   }
@@ -68,6 +82,7 @@ resource "aws_instance" "shipping" {
 resource "aws_instance" "rabbitmq" {
   ami           = data.aws_ami.ami.image_id
   instance_type = var.instance_type
+  vpc_security_group_ids = [data.aws_security_group.allow-all.id]
   tags = {
     Name= "rabbitmq"
   }
@@ -75,6 +90,7 @@ resource "aws_instance" "rabbitmq" {
 resource "aws_instance" "payment" {
   ami           = data.aws_ami.ami.image_id
   instance_type = var.instance_type
+  vpc_security_group_ids = [data.aws_security_group.allow-all.id]
   tags = {
     Name= "payment"
   }
