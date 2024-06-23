@@ -17,3 +17,14 @@ variable "mylist" {
 output "listvalues" {
   value = "the value from list ${var.mylist[2]}"
 }
+
+variable "dict" {
+  default = {
+    firstname=kruthika
+    lastname=poreddy
+  }
+}
+
+output "dict_values" {
+  value = "${var.dict["firstname"]}+>>>>>>>+${var.dict["lastname"]}"
+}
