@@ -74,9 +74,9 @@ resource "aws_instance" "instance" {
 }
 
 resource "aws_route53_record" "records" {
-for_each = var.components
+  for_each = var.components
   zone_id = "Z01562533IX3SEB52WHM7"
-  name    = "${each.value["name"]-dev.kruthikadevops.online"
+  name    = "${each.value["name"]}-dev.kruthikadevops.online"
   type    = "A"
   ttl     = 30
   records = [aws_instance.instance[each.value["name"]].private_ip]
