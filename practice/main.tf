@@ -11,7 +11,7 @@ output "result1" {
 }
 
 variable "mylist" {
-  default = [naveen,0,reddy,test]
+  default = ["naveen",0,"reddy","test"]
 }
 
 output "listvalues" {
