@@ -30,3 +30,7 @@ output "dict_values" {
 }
 
 variable "env" {}
+
+output "envvalue" {
+  value = var.env
+}
