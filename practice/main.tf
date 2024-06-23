@@ -20,8 +20,8 @@ output "listvalues" {
 
 variable "dict" {
   default = {
-    firstname=kruthika
-    lastname=poreddy
+    firstname="kruthika"
+    lastname="poreddy"
   }
 }
 
