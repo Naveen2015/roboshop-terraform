@@ -63,7 +63,7 @@ variable "components" {
 
 
 
-/*resource "aws_instance" "instance" {
+resource "aws_instance" "instance" {
   for_each = var.components
   ami           = data.aws_ami.ami.image_id
   instance_type = "${each.value["instance_type"]}"
@@ -73,11 +73,12 @@ variable "components" {
   }
 }
 
-resource "aws_route53_record" "${each.value["name"]" {
+/*resource "aws_route53_record" "${each.value["name"]" {
 for_each = var.components
   zone_id = "Z01562533IX3SEB52WHM7"
   name    = "${each.value["name"]-dev.kruthikadevops.online"
   type    = "A"
   ttl     = 30
   records = [aws_instance.${each.value["name"].private_ip]
-}*/
+}
+*/
