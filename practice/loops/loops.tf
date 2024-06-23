@@ -9,3 +9,20 @@ resource "null_resource" "fruits" {
    command= "echo fruit name---${var.list[count.index]}"
   }
 }
+
+
+variable "fruits" {
+  default = {
+    apple=10
+    orange=20
+    banana=15
+  }
+}
+
+
+resource "null_resource" "dict_fruits" {
+  for_each = var.fruits
+  provisioner "local-exec" {
+    command = "echo total no. of fruits: ${length(var.fruits)}"
+  }
+}
