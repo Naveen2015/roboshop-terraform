@@ -1,68 +1,3 @@
-data "aws_ami" "ami" {
-  most_recent = true
-  owners = ["973714476881"]
-  name_regex = "Centos-8-DevOps-Practice"
-}
-
-data "aws_security_group" "allow-all" {
-  name = "allow-all"
-}
-
-
-
-variable "instance_type" {
-  default = "t3.micro"
-}
-
-variable "components" {
-  default = {
-    frontend={
-      name="frontend"
-      instance_type="t3.micro"
-    }
-    mongod={
-      name="mongod"
-      instance_type="t3.micro"
-    }
-    catalogue={
-      name="catalogue"
-      instance_type="t3.micro"
-    }
-    redis={
-      name="redis"
-      instance_type="t3.micro"
-    }
-    user={
-      name="user"
-      instance_type="t3.micro"
-    }
-    cart={
-      name="cart"
-      instance_type="t3.micro"
-    }
-    mysql={
-      name="mysql"
-      instance_type="t3.micro"
-    }
-    shipping={
-      name="shipping"
-      instance_type="t3.micro"
-    }
-    rabbitmq={
-      name="rabbitmq"
-      instance_type="t3.micro"
-    }
-    payment={
-      name="payment"
-      instance_type="t3.micro"
-    }
-  }
-}
-
-
-
-
-
 resource "aws_instance" "instance" {
   for_each = var.components
   ami           = data.aws_ami.ami.image_id
@@ -70,6 +5,26 @@ resource "aws_instance" "instance" {
   vpc_security_group_ids = [data.aws_security_group.allow-all.id]
   tags = {
     Name= each.value["name"]
+  }
+}
+
+resource "null_resource" "provisioner" {
+  depends_on = [aws_instance.instance,aws_route53_record.records]
+  for_each = var.components
+  connection {
+    type     = "ssh"
+    user     = "centos"
+    password = "DevOps321"
+    host     = [aws_instance.instance[each.value["name"]].private_ip]
+  }
+  provisioner "remote-exec" {
+
+    inline = [
+      "rm -rf roboshop-shell",
+      "git clone https://github.com/Naveen2015/roboshop-shell.git",
+      "cd roboshop-shell",
+      "sudo bash ${each.value["name"]}.sh"
+    ]
   }
 }
 
