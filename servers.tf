@@ -7,17 +7,17 @@ resource "aws_instance" "instance" {
     Name= each.value["name"]
   }
 }
-
 resource "null_resource" "provisioner" {
   depends_on = [aws_instance.instance,aws_route53_record.records]
   for_each = var.components
+  provisioner "remote-exec" {
   connection {
     type     = "ssh"
     user     = "centos"
     password = "DevOps321"
     host     = aws_instance.instance[each.value["name"]].private_ip
   }
-  provisioner "remote-exec" {
+
 
     inline = [
       "rm -rf roboshop-shell",
