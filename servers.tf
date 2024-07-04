@@ -1,5 +1,3 @@
-variable "env" {}
-variable "components" {}
 module "servers" {
   for_each = var.components
 

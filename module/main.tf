@@ -31,7 +31,7 @@ resource "null_resource" "provisioner" {
 resource "aws_route53_record" "records" {
 
   zone_id = "Z01562533IX3SEB52WHM7"
-  name    = "${var.component_name}-dev.kruthikadevops.online"
+  name    = "${var.component_name }-dev.kruthikadevops.online"
   type    = "A"
   ttl     = 30
   records = [aws_instance.instance.private_ip]
