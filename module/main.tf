@@ -1,5 +1,4 @@
 resource "aws_instance" "instance" {
-
   ami           = data.aws_ami.ami.image_id
   instance_type = var.instance_type
   vpc_security_group_ids = [data.aws_security_group.allow-all.id]
@@ -32,7 +31,7 @@ resource "null_resource" "provisioner" {
 resource "aws_route53_record" "records" {
 
   zone_id = "Z01562533IX3SEB52WHM7"
-  name    = "${var.component_name }-dev.kruthikadevops.online"
+  name    = "${var.component_name }-${var.env}.kruthikadevops.online"
   type    = "A"
   ttl     = 30
   records = [aws_instance.instance.private_ip]
