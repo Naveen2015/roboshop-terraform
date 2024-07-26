@@ -5,6 +5,7 @@ resource "aws_instance" "instance" {
   tags = {
     Name= local.name
   }
+  iam_instance_profile = aws_iam_instance_profile.instance_profile.name
 }
 
 resource "null_resource" "provisioner" {
@@ -84,4 +85,9 @@ resource "aws_iam_role_policy" "ssm-ps-policy" {
       }
     ]
   })
+}
+
+resource "aws_iam_instance_profile" "instance_profile" {
+  name = "${var.component_name}-${var.env}-policy"
+  role = aws_iam_role.role.name
 }
