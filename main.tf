@@ -8,6 +8,6 @@ module "vpc" {
 
 }
 
-/*output "vpc" {
+output "vpc" {
   value = module.vpc
-}*/
+}
